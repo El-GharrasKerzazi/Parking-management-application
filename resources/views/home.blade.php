@@ -113,7 +113,7 @@
             </div>
               
             <div class="col-md-12">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover table-responsive-md">
                     
                         <thead id="thead">
                           <tr>
