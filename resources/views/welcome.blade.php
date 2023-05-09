@@ -10,7 +10,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-3">
                 <div class="card p-3 mt-5">
-                    <img src="{{ asset('img/64419.jpg') }}" alt="">
+                    <img src="{{ asset('img/3993591_84522-removebg.png') }}" alt="">
                    
                     <hr>
                     @guest

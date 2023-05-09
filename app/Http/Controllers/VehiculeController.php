@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Parc;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
-use App\Models\Fonctionnaire;
 
 class VehiculeController extends Controller
 {
@@ -33,7 +32,7 @@ class VehiculeController extends Controller
         //
         return view("vehicules.create")->with([
             "parcs" => Parc::all(),
-            "fonctionnaires" => Fonctionnaire::all()
+            
         ]);
     }
 
@@ -49,30 +48,36 @@ class VehiculeController extends Controller
         
          //validation :
          $this->validate($request,[
-            "matricule" => "required|unique:vehicules,matricule",
-            "type" => "required",
-            "marque" => "required",
-            "date_assurance" => "required",
-            "mission" => "required",
-            "fonctionnaire_id" => "required|numeric",
+            "Matricule" => "required|unique:vehicules,Matricule",
+            "Type" => "required",
+            "Marque" => "required",
+            "Kilometrage" => "required",
+            "TypeCarb" => "required",
+            "DateDebutAssurance" => "required",
+            "CoutCarburant" => "required",
+            "CoutAssurance" => "required",
+            "CoutReparation" => "required",
             "parc_id" => "required|numeric"
         ]);
 
         //Store data :
         Vehicule::create([
-            "matricule" => $request->matricule,
-            "type" => $request->type,
-            "marque" => $request->marque,
-            "date_assurance" => $request->date_assurance,
-            "mission" => $request->mission,
-            "fonctionnaire_id" => $request->fonctionnaire_id,
+            "Matricule" => $request->Matricule,
+            "Type" => $request->Type,
+            "Marque" => $request->Marque,
+            "Kilometrage" => $request->Kilometrage,
+            "TypeCarb" => $request->TypeCarb,
+            "DateDebutAssurance" => $request->DateDebutAssurance,
+            "CoutCarburant" => $request->CoutCarburant,
+            "CoutAssurance" => $request->CoutAssurance,
+            "CoutReparation" => $request->CoutReparation,
             "parc_id" => $request->parc_id
 
         ]);
 
         //redirect route :
         return redirect()->route("vehicules.index")->with([
-            "success" => "vehicule ajoute avec succés"
+            "success" => "Vehicule ajoute avec succés"
         ]);
     }
 
@@ -84,7 +89,9 @@ class VehiculeController extends Controller
      */
     public function show(Vehicule $vehicule)
     {
-        //
+        
+        $vehicules =Vehicule::all();
+        return view('home',compact('vehicules'));
     }
 
     /**
@@ -98,7 +105,6 @@ class VehiculeController extends Controller
         //
 
         return view("vehicules.edit")->with([
-            "fonctionnaires" => Fonctionnaire::all(),
             "parcs" => Parc::all(),
             "vehicule" => $vehicule
         ]);
@@ -117,30 +123,36 @@ class VehiculeController extends Controller
 
           //validation :
           $this->validate($request,[
-            "matricule" => "required|unique:vehicules,matricule,".$vehicule->id,
-            "type" => "required",
-            "marque" => "required",
-            "date_assurance" => "required",
-            "mission" => "required",
-            "fonctionnaire_id" => "required|numeric",
+            "Matricule" => "required|unique:vehicules,Matricule".$vehicule->id,
+            "Type" => "required",
+            "Marque" => "required",
+            "Kilometrage" => "required",
+            "TypeCarb" => "required",
+            "DateDebutAssurance" => "required",
+            "CoutCarburant" => "required",
+            "CoutAssurance" => "required",
+            "CoutReparation" => "required",
             "parc_id" => "required|numeric"
         ]);
 
-        //Store data :
+        //Update data :
         $vehicule->update([
-            "matricule" => $request->matricule,
-            "type" => $request->type,
-            "marque" => $request->marque,
-            "date_assurance" => $request->date_assurance,
-            "mission" => $request->mission,
-            "fonctionnaire_id" => $request->fonctionnaire_id,
+            "Matricule" => $request->Matricule,
+            "Type" => $request->Type,
+            "Marque" => $request->Marque,
+            "Kilometrage" => $request->Kilometrage,
+            "TypeCarb" => $request->TypeCarb,
+            "DateDebutAssurance" => $request->DateDebutAssurance,
+            "CoutCarburant" => $request->CoutCarburant,
+            "CoutAssurance" => $request->CoutAssurance,
+            "CoutReparation" => $request->CoutReparation,
             "parc_id" => $request->parc_id
 
         ]);
 
         //redirect route :
         return redirect()->route("vehicules.index")->with([
-            "success" => "vehicule modifier avec succés"
+            "success" => "Vehicule modifier avec succés"
         ]);
     }
 

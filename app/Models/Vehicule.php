@@ -12,7 +12,8 @@ class Vehicule extends Model
 
     protected $fillable = [
          
-        'matricule','type','marque','date_assurance','mission','fonctionnaire_id','parc_id'
+        'Matricule','Type','Marque','Kilometrage','TypeCarb',
+        'DateDebutAssurance','CoutCarburant','CoutAssurance','CoutReparation','parc_id'
 
        ];
 
@@ -21,9 +22,9 @@ class Vehicule extends Model
           return $this->belongsTo(Parc::class);
        }
 
-       public function fonctionnaire(){
+       public function mission(){
 
-        return $this->belongsTo(Fonctionnaire::class);
+        return $this->hasMany(Mission::class);
        }
 
        public function panne(){
@@ -35,6 +36,14 @@ class Vehicule extends Model
 
         return $this->hasMany(Reparation::class);
        }
+
+       public function carburant(){
+
+        return $this->hasMany(Carburant::class);
+       }
+
+      
+
 
 
 

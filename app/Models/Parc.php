@@ -11,17 +11,14 @@ class Parc extends Model
 
     protected $fillable = [
          
-        'numero_parc','nom_parc','emplacement'
+        'Numero_parc','Nom_parc'
 
        ];
 
-       public function fonctionnaire(){
+       public function vehicule(){
 
-          return $this->hasMany(Fonctionnaire::class);
+          return $this->hasMany(Vehicule::class);
        }
 
-    //    public function getRouteKeyName(){
-            
-    //        return "numero_parc";
-    //    }
-}
+    
+  }

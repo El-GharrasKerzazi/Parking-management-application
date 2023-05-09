@@ -15,10 +15,10 @@ class CreateReparationsTable extends Migration
     {
         Schema::create('reparations', function (Blueprint $table) {
             $table->id()->primarykey();
-            $table->integer('numero_reparation');
-            $table->date('date_reparation');
-            $table->unsignedBigInteger('fonctionnaire_id');
-            $table->foreign('fonctionnaire_id')->references('id')->on('fonctionnaires')->onDelete("cascade");
+            $table->integer('Numero_reparation');
+            $table->date('Date_reparation');
+            $table->string('Type_reparation');
+            $table->double('Prix_reparation', 8, 2);
             $table->unsignedBigInteger('vehicule_id');
             $table->foreign('vehicule_id')->references('id')->on('vehicules')->onDelete("cascade");
             $table->timestamps();

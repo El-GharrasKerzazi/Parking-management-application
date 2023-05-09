@@ -11,7 +11,7 @@ class Panne extends Model
 
     protected $fillable = [
          
-        'nom_panne','type_panne','vehicule_id'
+        'Numero_panne','Date_panne','Type_panne','vehicule_id'
 
        ];
 

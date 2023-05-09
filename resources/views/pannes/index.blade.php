@@ -5,81 +5,127 @@
 @section('title')
     Page | Panne
 @endsection
-@section('content_header')
-<a class="btn btn-outline-success" href="{{ url('admin/home') }}" role="button">Dashboard</a>
-@endsection
+
 
 @section('content')
 <div class="container ">
     <div class="row ">
-        <div class="col-md-10 mx-auto">
-          <div class="row my-5">
+        
+            <div class="col-md-4 mt-4">
+                <div class="small-box" style="background-color: rgb(218, 51, 204)">
+                 <div class="inner">
+                     <h3>{{ \App\Models\Vehicule::count() }}</h3>
+                     <p class="text-bold">Vehicule</p>
+                 </div>
+                 <div class="icon">
+                     <i class="fas fa-car"></i>
+                 </div>
+                 <a href="{{ url('admin/vehicules') }}" class="small-box-footer">
+                 more info <i class="fas fa-arrow-circle-right"></i>
+                 </a>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-4">
+                <div class="small-box" style="background-color: rgb(64, 233, 115)">
+                 <div class="inner">
+                     <h3>{{ \App\Models\Reparation::count() }}</h3>
+                     <p class="text-bold">Reaparation</p>
+                 </div>
+                 <div class="icon">
+                     <i class="fas fa-wrench"></i>
+                 </div>
+                 <a href="{{ url('admin/reaparations') }}" class="small-box-footer">
+                 more info <i class="fas fa-arrow-circle-right"></i>
+                 </a>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-4">
+                <div class="small-box" style="background-color: rgb(27, 178, 238)">
+                 <div class="inner">
+                     <h3>{{ \App\Models\Panne::count() }}</h3>
+                     <p class="text-bold">Panne</p>
+                 </div>
+                 <div class="icon">
+                     <i class="fas fa-hourglass-half"></i>
+                 </div>
+                 <a href="{{ url('admin/pannes') }}" class="small-box-footer">
+                 more info <i class="fas fa-arrow-circle-right"></i>
+                 </a>
+                </div>
+            </div>
+          {{-- <div class="row my-5">
                <div class="col-md-6 mx-auto">
                 @include('layouts.alert')
                </div>
-          </div>
-          <div class="card my-3">
-            <div class="card-header">
-               <div class="text-center font-weight-bold text-uppercase">
-
-                  <h4 class="btn btn-info">Panne</h4>
-
-
-                </div>
-              </div>
-              <div class="card-body">
-                  <div class="col-lg-12">
-                    <table id="myTable" class="table table-bordered table-striped table-info table-responsive-lg table-hover">
-                        <thead>
-                           <tr>
-                               <th>ID</th>
-                               <th>Nom_Panne</th>
-                               <th>Type_Panne</th>
-                               <th>Matricule</th>
-                               <th>Action</th>
-                               
-                       
-                               
-                           </tr>
-                        </thead>
-                        <tbody>
-                           @foreach ($pannes as $key => $panne)
-                           <tr>
-                               <td>{{ $key+=1 }}</td>
-                               <td>{{ $panne->nom_panne }}</td>
-                               <td>{{ $panne->type_panne }}</td>
-                               <td>{{ $panne->vehicule->matricule }}</td>
-                               <td class="d-flex justify-content-center align-items-center">
-                                  
-                                   <a href="{{ route('pannes.show' , $panne->id) }}" 
-                                      class="btn btn-sm btn-primary">
-                                      <i class="fas fa-eye"></i>
-                                   </a>
+          </div> --}}
+           <div class="col-md-12">
+            <div class="card my-3">
+                <div class="card-header">
+                   <div class="text-center font-weight-bold ">
+    
+                      <h4 class="btn btn-info">Panne</h4>
+    
+    
+                    </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="col-lg-12">
+                        <table id="myTable" class="table table-bordered table-striped  table-responsive-md table-hover">
+                            <thead style="background-color: rgb(74, 74, 117); color:aliceblue">
+                               <tr>
+                                   <th>ID</th>
+                                   <th>NumeroPanne</th>
+                                   <th>DatePanne</th>
+                                   <th>TypePanne</th>
+                                   <th>Matricule</th>
+                                   <th>Action</th>
                                    
-                                   <a href="{{ route('pannes.edit' , $panne->id) }}" 
-                                      class="btn btn-sm btn-success mx-2">
-                                      <i class="fas fa-edit"></i>
-                                   </a>
-                                   <form  id="{{ $panne->id }}" action="{{ route('pannes.destroy' , $panne->id) }}" method="post">
-                       
-                                       @csrf
-                                       @method('DELETE')
-                                   </form>
-                                       <button  onclick="deleteEmp({{ $panne->id}})"
-                                           type="submite" 
-                                           class="btn btn-sm btn-danger">
-                                           <i class="fas fa-trash"></i>
-                                       </button>
-                               </td>
-                               
-                           </tr>
-                           @endforeach
-                        </tbody>
-                   </table>
+                           
+                                   
+                               </tr>
+                            </thead>
+                            <tbody>
+                               @foreach ($pannes as $key => $panne)
+                               <tr>
+                                   <td>{{ $key+=1 }}</td>
+                                   <td>{{ $panne->Numero_panne }}</td>
+                                   <td>{{ $panne->Date_panne }}</td>
+                                   <td>{{ $panne->Type_panne }}</td>
+                                   <td>{{ $panne->vehicule->Matricule }}</td>
+                                   <td class="d-flex justify-content-center align-items-center">
+                                      
+                                       <a href="{{ route('pannes.show' , $panne->id) }}" 
+                                          class="btn btn-sm btn-primary">
+                                          <i class="fas fa-eye"></i>
+                                       </a>
+                                       
+                                       <a href="{{ route('pannes.edit' , $panne->id) }}" 
+                                          class="btn btn-sm btn-success mx-2">
+                                          <i class="fas fa-edit"></i>
+                                       </a>
+                                       <form  id="{{ $panne->id }}" action="{{ route('pannes.destroy' , $panne->id) }}" method="post">
+                           
+                                           @csrf
+                                           @method('DELETE')
+                                       </form>
+                                           <button  onclick="deleteEmp({{ $panne->id}})"
+                                               type="submite" 
+                                               class="btn btn-sm btn-danger">
+                                               <i class="fas fa-trash"></i>
+                                           </button>
+                                   </td>
+                                   
+                               </tr>
+                               @endforeach
+                            </tbody>
+                       </table>
+                      </div>
                   </div>
               </div>
-          </div>
-        </div>
+            </div>
+           </div>
     </div>
 </div>
 @endsection
@@ -90,7 +136,7 @@
             $('#myTable').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
-                    'copy', 'excel', 'csv', 'pdf', 'print', 'colvis'
+                 'excel', 'print', 'colvis'
                 ]
             });
         });
@@ -103,7 +149,7 @@
           icon: 'success',
           title: "{{ session()->get('success') }}",
           showConfirmButton: false,
-          timer: 3500
+          timer: 2500
           })
     
     </script>

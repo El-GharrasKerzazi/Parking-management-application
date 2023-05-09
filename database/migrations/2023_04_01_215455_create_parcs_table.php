@@ -15,9 +15,8 @@ class CreateParcsTable extends Migration
     {
         Schema::create('parcs', function (Blueprint $table) {
             $table->id()->primarykey();
-            $table->integer('numero_parc');
-            $table->string('nom_parc');
-            $table->string('emplacement');
+            $table->integer('Numero_parc');
+            $table->string('Nom_parc');
             $table->timestamps();
         });
     }

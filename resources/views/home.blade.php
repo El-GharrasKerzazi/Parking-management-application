@@ -3,10 +3,19 @@
 @section('title')
     Page | Home
 @endsection
-@section('content_header')
-    <h1>dashboard</h1>
-@endsection
 
+@section('css')
+    <style>
+        #thead{
+            background-color: #2a2185;
+            color: aliceblue;
+        }
+    </style>
+@endsection
+@section('content_header')
+    <div class="ml-5"><button type="button" class="btn btn-success text-bold">Dashboard</button></div>
+    
+@endsection
 @section('content')
 <div class="container ">
     <div class="row my-5 ">
@@ -14,6 +23,7 @@
            <div class="small-box bg-info">
             <div class="inner">
                 <h3>{{ \App\Models\Panne::count() }}</h3>
+                
                 <p>Panne</p>
             </div>
             <div class="icon">
@@ -101,7 +111,57 @@
                  </a>
                 </div>
             </div>
-         </div>
+              
+            <div class="col-md-12">
+                <table class="table table-striped table-hover">
+                    
+                        <thead id="thead">
+                          <tr>
+                            <th>Vehicule</th>
+                            <th>Matricule</th>
+                            <th>Marque</th>
+                            <th>Type</th>
+                            <th>Parking</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                             @foreach ($vehicules as $item)
+
+                             <tr>
+                                
+                                <th>
+                                    @if ($item->TypeCarb=='Essence')
+                                    <img src="{{ asset('img/3993591_84522-removebg.png') }}" alt="" style="width: 60px;">
+
+                                   @elseif($item->TypeCarb=='Diesel')
+                                   <img src="{{ asset('img/ii.png') }}" alt="" style="width: 60px;">
+
+                                   @elseif($item->TypeCarb=='Electrique')
+                                   <img src="{{ asset('img/pp.png') }}" alt="" style="width: 60px;">
+
+                                   @endif
+                                </th>
+                               
+                                    
+                              
+                               
+                                <th>{{ $item->Matricule }}</th>
+                                <th>{{ $item->Marque }}</th>
+                                <th>{{ $item->Type }}</th>
+                                <th>{{ $item->parc->Nom_parc }}</th>
+                              </tr>
+                                 
+                             @endforeach
+                         
+                        </tbody>
+                      </table>
+                  
+            </div>
+
+             
+          
+
+        
     </div>
 
     

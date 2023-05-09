@@ -1,15 +1,13 @@
 @extends('adminlte::page')
 
-@section('content_header')
-<a class="btn btn-outline-danger" href="{{ route('fonctionnaires.index') }}" role="button">Back</a>
-@endsection
+
 
 @section('content')
 <div class="container ">
 
     @include('layouts.alert')
     <div class="row ">
-        <div class="col-md-10 mx-auto">
+        <div class="col-md-10 mx-auto" style="margin-top: 60px">
            <div class="card my-5 shadow-lg p-3 mb-5 bg-body rounded">
               <div class="card-header mx-auto ">
                  <div class="btn btn-success font-weight-bold ">
@@ -25,71 +23,110 @@
                             @method('PUT')
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
-                                    <label for="cin">Cin</label>
+                                    <label for="Cin">Cin</label>
                                     <input type="text" class="form-control" 
-                                    name="cin" value="{{ old('cin' ,$fonctionnaire->cin) }}" 
+                                    name="Cin" value="{{ old('Cin' ,$fonctionnaire->Cin) }}" 
                                     placeholder="Cin">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
-                                    <label for="nom">Nom</label>
+                                    <label for="Nom">Nom</label>
                                     <input type="text" class="form-control" 
-                                    name="nom" value="{{ old('nom',$fonctionnaire->nom) }}" 
+                                    name="Nom" value="{{ old('Nom',$fonctionnaire->Nom) }}" 
                                     placeholder="Nom">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
-                                    <label for="prenom">Prenom</label>
+                                    <label for="Prenom">Prenom</label>
                                     <input type="text" class="form-control" 
-                                    name="prenom" value="{{ old('prenom',$fonctionnaire->prenom) }}" 
+                                    name="Prenom" value="{{ old('Prenom',$fonctionnaire->Prenom) }}" 
                                     placeholder="Prenom">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
-                                    <label for="age">Age</label>
-                                    <input type="text" class="form-control" 
-                                    name="age" value="{{ old('age',$fonctionnaire->age) }}" 
-                                    placeholder="Age">
+                                    <label for="Sexe">Sexe</label>
+                                    <select name="Sexe" id="Sexe" class="form-control">
+                                       
+                                        
+                                        <option value="Homme" {{ $fonctionnaire->Sexe =="Homme" ? 'selected' : '' }}>Homme</option>
+        
+                                        <option  value="Femme" {{ $fonctionnaire->Sexe =="Femme" ? 'selected' : '' }}>Femme</option> 
+                                             
+                                    </select>
                                 </div>
                             </div>
 
                               <div class="col-md-4">
                                 <div class="form-group mb-3">
-                                    <label for="grade">Grade</label>
-                                    <input type="text" class="form-control" 
-                                    name="grade" value="{{ old('grade',$fonctionnaire->grade) }}" 
-                                    placeholder="grade">
+                                    <label for="DateNaissance">Date Naissance</label>
+                                    <input type="date" class="form-control"  selected
+                                    name="DateNaissance" value="{{ old('DateNaissance',$fonctionnaire->DateNaissance) }}" 
+                                    placeholder="DateNaissance">
                                 </div>
                               </div>
 
-                               <div class="col-md-4">
+                              <div class="col-md-4">
                                 <div class="form-group mb-3">
-                                    <label for="grade">Parc</label>
-                                    <select name="parc_id" id="parc_id" class="form-control">
-                                        <option value="" selected disabled>Choisir une parc</option>
-                                         @foreach ($parcs as $parc)
-                                           
-                                          <option class='font-weight-bold' value="{{ $parc->id }}">
-                                             {{ $parc->nom_parc }}
-                                         </option> 
-                                             
-                                         @endforeach
-                                    </select>
+                                    <label for="LieuNaissance">Lieu Naissance</label>
+                                    <input type="text" class="form-control" 
+                                    name="LieuNaissance" value="{{ old('LieuNaissance',$fonctionnaire->LieuNaissance) }}" 
+                                    placeholder="LieuNaissance">
                                 </div>
-                               </div>
+                              </div>
 
-                            <div class="form-group">
+                              <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label for="Email">Email</label>
+                                    <input type="text" class="form-control" 
+                                    name="Email" value="{{ old('Email',$fonctionnaire->Email) }}" 
+                                    placeholder="Email">
+                                </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label for="Tel">Telephone</label>
+                                    <input type="text" class="form-control" 
+                                    name="Tel" value="{{ old('Tel',$fonctionnaire->Tel) }}" 
+                                    placeholder="Tel">
+                                </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label for="Adresse">Adresse</label>
+                                    <input type="text" class="form-control" 
+                                    name="Adresse" value="{{ old('Adresse',$fonctionnaire->Adresse) }}" 
+                                    placeholder="Adresse">
+                                </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label for="Service">Service</label>
+                                    <input type="text" class="form-control" 
+                                    name="Service" value="{{ old('Service',$fonctionnaire->Service) }}" 
+                                    placeholder="Service">
+                                </div>
+                              </div>
+
+
+
+
+                           <div class="col-md-2">
+                            <div class="form-group"  style="margin-top:32px">
                                 <button type="submit" class="btn btn-primary">
-                                         Submit
+                                         Modifier
                                 </button>
 
                             </div>
+                           </div>
                         </form>
                       </div>
 

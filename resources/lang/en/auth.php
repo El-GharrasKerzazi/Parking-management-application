@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => "Ces informations d'identification ne correspondent pas à nos enregistrements.",
+    'failed' => " Email ou Mot de passe incorrect",
     'password' => 'Le mot de passe fourni est incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 

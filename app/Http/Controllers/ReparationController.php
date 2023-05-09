@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Vehicule;
 use App\Models\Reparation;
 use Illuminate\Http\Request;
-use App\Models\Fonctionnaire;
 
 class ReparationController extends Controller
 {
@@ -30,7 +29,6 @@ class ReparationController extends Controller
     {
         //
         return view('reparations.create')->with([
-            "fonctionnaires" => Fonctionnaire::all(),
             "vehicules" => Vehicule::all()
         ]);
     }
@@ -46,24 +44,26 @@ class ReparationController extends Controller
         //
         //validation :
         $this->validate($request,[
-            "numero_reparation" => "required|unique:reparations,numero_reparation",
-            "date_reparation" => "required",
-            "fonctionnaire_id" => "required|numeric",
+            "Numero_reparation" => "required|unique:reparations,Numero_reparation",
+            "Date_reparation" => "required",
+            "Type_reparation" => "required",
+            "Prix_reparation" => "required",
             "vehicule_id" => "required|numeric"
         ]);
     
         //Store data :
         reparation::create([
-            "numero_reparation" => $request->numero_reparation,
-            "date_reparation" => $request->date_reparation,
-            "fonctionnaire_id" => $request->fonctionnaire_id,
+            "Numero_reparation" => $request->Numero_reparation,
+            "Date_reparation" => $request->Date_reparation,
+            "Type_reparation" => $request->Type_reparation,
+            "Prix_reparation" => $request->Prix_reparation,
             "vehicule_id" => $request->vehicule_id
 
         ]);
 
         //redirect route :
         return redirect()->route("reparations.index")->with([
-            "success" => "reparation ajoute avec succés"
+            "success" => "Reparation ajoute avec succés"
         ]);
     }
 
@@ -88,7 +88,6 @@ class ReparationController extends Controller
     {
         //
         return view('reparations.edit')->with([
-            "fonctionnaires" => Fonctionnaire::all(),
             "vehicules" => Vehicule::all(),
             "reparation" =>$reparation
         ]);
@@ -106,24 +105,27 @@ class ReparationController extends Controller
         //
          //validation :
          $this->validate($request,[
-            "numero_reparation" => "required|unique:reparations,numero_reparation,".$reparation->id,
-            "date_reparation" => "required",
-            "fonctionnaire_id" => "required|numeric",
+            "Numero_reparation" => "required",
+            "Date_reparation" => "required",
+            "Type_reparation" => "required",
+            "Prix_reparation" => "required",
             "vehicule_id" => "required|numeric"
         ]);
+        
 
         //Update data :
         $reparation->update([
-            "numero_reparation" => $request->numero_reparation,
-            "date_reparation" => $request->date_reparation,
-            "fonctionnaire_id" => $request->fonctionnaire_id,
+            "Numero_reparation" => $request->Numero_reparation,
+            "Date_reparation" => $request->Date_reparation,
+            "Type_reparation" => $request->Type_reparation,
+            "Prix_reparation" => $request->Prix_reparation,
             "vehicule_id" => $request->vehicule_id
 
         ]);
 
         //redirect route :
         return redirect()->route("reparations.index")->with([
-            "success" => "reparation modifie avec succés"
+            "success" => "Reparation modifie avec succés"
         ]);
     }
 

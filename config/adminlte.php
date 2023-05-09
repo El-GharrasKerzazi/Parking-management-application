@@ -50,7 +50,7 @@ return [
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Employes Management System',
+    'logo_img_alt' => 'Parking Management System',
 
     /*
     |--------------------------------------------------------------------------
@@ -120,14 +120,13 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
-
     'classes_body' => '',
     'classes_brand' => '',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-success elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -150,7 +149,7 @@ return [
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
-    'sidebar_scrollbar_theme' => 'os-theme-light',
+    'sidebar_scrollbar_theme' => 'os-theme-dark',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
     'sidebar_nav_animation_speed' => 300,
@@ -242,7 +241,7 @@ return [
                     'icon' => 'fas fa-fw fa-list',
                 ],
                 [
-                    'text' => 'Create',
+                    'text' => 'Ajouté',
                     'url'  => 'admin/fonctionnaires/create',
                     'icon' => 'fas fa-fw fa-user-plus',
                 ],
@@ -261,7 +260,7 @@ return [
                     'icon' => 'fas fa-fw fa-list',
                 ],
                 [
-                    'text' => 'Create',
+                    'text' => 'Ajouté',
                     'url'  => 'admin/vehicules/create',
                     'icon' => 'fas fa-fw fa-user-plus',
                 ],
@@ -275,12 +274,12 @@ return [
             'icon' => 'fas fa-fw fa-university',
             'submenu' => [
                 [
-                    'text' => 'List of Parc',
+                    'text' => 'List de Parc',
                     'url'  => 'admin/parcs',
                     'icon' => 'fas fa-fw fa-list',
                 ],
                 [
-                    'text' => 'Create',
+                    'text' => 'Ajouté',
                     'url'  => 'admin/parcs/create',
                     'icon' => 'fas fa-fw fa-user-plus',
                 ],
@@ -294,12 +293,12 @@ return [
             'icon' => 'fas fa-fw fa-hourglass-half',
             'submenu' => [
                 [
-                    'text' => 'List of Pannes',
+                    'text' => 'List de Pannes',
                     'url'  => 'admin/pannes',
                     'icon' => 'fas fa-fw fa-list',
                 ],
                 [
-                    'text' => 'Create',
+                    'text' => 'Ajouté',
                     'url'  => 'admin/pannes/create',
                     'icon' => 'fas fa-fw fa-user-plus',
                 ],
@@ -313,13 +312,52 @@ return [
             'icon' => 'fas fa-fw fa-wrench',
             'submenu' => [
                 [
-                    'text' => 'List of Reparations',
+                    'text' => 'List de Reparations',
                     'url'  => 'admin/reparations',
                     'icon' => 'fas fa-fw fa-list',
                 ],
                 [
-                    'text' => 'Create',
+                    'text' => 'Ajouté',
                     'url'  => 'admin/reparations/create',
+                    'icon' => 'fas fa-fw fa-user-plus',
+                ],
+            ],
+        ],
+
+        //SideBar Mission :
+
+        [
+            'text' => 'Missions',
+            'icon' => 'fas fa-fw fa-spinner',
+            'submenu' => [
+                [
+                    'text' => 'List de Missions',
+                    'url'  => 'admin/missions',
+                    'icon' => 'fas fa-fw fa-list',
+                    
+                ],
+                [
+                    'text' => 'Ajouté',
+                    'url'  => 'admin/missions/create',
+                    'icon' => 'fas fa-fw fa-user-plus',
+                ],
+            ],
+        ],
+
+        //SideBar Carburant :
+
+        [
+            'text' => 'Carburants',
+            'icon' => 'fas fa-fw fa-battery-half',
+            'submenu' => [
+                [
+                    'text' => 'List de Carburants',
+                    'url'  => 'admin/carburants',
+                    'icon' => 'fas fa-fw fa-list',
+                ],
+                [
+                    'text' => 'Ajouté',
+                    'url'  => 'admin/carburants/create',
                     'icon' => 'fas fa-fw fa-user-plus',
                 ],
             ],

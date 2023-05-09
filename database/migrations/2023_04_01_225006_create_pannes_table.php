@@ -15,8 +15,9 @@ class CreatePannesTable extends Migration
     {
         Schema::create('pannes', function (Blueprint $table) {
             $table->id()->primarykey();
-            $table->string('nom_panne');
-            $table->string('type_panne');
+            $table->integer('Numero_panne');
+            $table->date('Date_panne');
+            $table->string('Type_panne');
             $table->unsignedBigInteger('vehicule_id');
             $table->foreign('vehicule_id')->references('id')->on('vehicules')->onDelete("cascade");
             $table->timestamps();

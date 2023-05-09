@@ -1,15 +1,13 @@
 @extends('adminlte::page')
 
-@section('content_header')
-<a class="btn btn-outline-danger" href="{{ route('vehicules.index') }}" role="button">Back</a>
-@endsection
+
 
 @section('content')
 <div class="container">
 
     @include('layouts.alert')
     <div class="row ">
-        <div class="col-md-10 mx-auto">
+        <div class="col-md-10 mx-auto" style="margin-top: 60px">
            <div class="card my-5 shadow-lg p-3 mb-5 bg-body rounded">
               <div class="card-header mx-auto ">
                  <div class="btn btn-primary font-weight-bold shadow-lg ">
@@ -25,18 +23,18 @@
                             @method('PUT')
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
-                                    <label for="matricule">Matricule</label>
+                                    <label for="Matricule">Matricule</label>
                                     <input type="text" class="form-control" 
-                                    name="matricule" value="{{ old('matricule',$vehicule->matricule) }}" 
+                                    name="Matricule" value="{{ old('Matricule',$vehicule->Matricule) }}" 
                                     placeholder="Matricule">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
-                                    <label for="type">Type</label>
+                                    <label for="Type">Type</label>
                                     <input type="text" class="form-control" 
-                                    name="type" value="{{ old('type',$vehicule->type) }}" 
+                                    name="Type" value="{{ old('Type',$vehicule->Type) }}" 
                                     placeholder="Type">
                                 </div>
                             </div>
@@ -45,44 +43,99 @@
                                 <div class="form-group mb-3">
                                     <label for="marque">Marque</label>
                                     <input type="text" class="form-control" 
-                                    name="marque" value="{{ old('marque',$vehicule->marque) }}" 
+                                    name="Marque" value="{{ old('Marque',$vehicule->Marque) }}" 
                                     placeholder="Marque">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
-                                    <label for="mission">Mission</label>
+                                    <label for="Kilometrage">Kilometrage</label>
                                     <input type="text" class="form-control" 
-                                    name="mission" value="{{ old('mission',$vehicule->mission) }}" 
-                                    placeholder="Mission">
+                                    name="Kilometrage" value="{{ old('Kilometrage',$vehicule->Kilometrage) }}" 
+                                    placeholder="Kilometrage">
+                                    
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="form-group mb-3">
-                                    <label for="date_assurance">Date_Assurance</label>
-                                    <input type="date" class="form-control" 
-                                    name="date_assurance" value="{{ old('date_assurance',$vehicule->date_assurance) }}" 
-                                    placeholder="Date_Assurance">
-                                </div>
-                            </div>
+
 
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
-                                    <label for="fonctionnaire">Conducteur</label>
-                                    <select name="fonctionnaire_id" id="fonctionnaire_id" class="form-control">
-                                        <option value="" selected disabled>Choisir une fonctionngradeaire</option>
-                                         @foreach ($fonctionnaires as $fonctionnaire)
-                                           
-                                          <option class='font-weight-bold' value="{{ $fonctionnaire->id }}">
-                                             {{ $fonctionnaire->cin }}
-                                         </option> 
+                                    <label for="TypeCarb">Type Carburant</label>
+                                    <select name="TypeCarb" id="TypeCarb" class="form-control">
+                                       
+                                        
+                                        <option value="Essence" {{ $vehicule->TypeCarb =="Essence" ? 'selected' : '' }}>Essence</option>
+        
+                                        <option  value="Diesel" {{ $vehicule->TypeCarb =="Diesel" ? 'selected' : '' }}>Diesel</option> 
+
+                                        <option  value="Electrique" {{ $vehicule->TypeCarb =="Electrique" ? 'selected' : '' }}>Electrique</option> 
                                              
-                                         @endforeach
                                     </select>
                                 </div>
                                </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label for="DateDebutAssurance">Date Assurance</label>
+                                    <input type="date" class="form-control" 
+                                    name="DateDebutAssurance" value="{{ old('DateDebutAssurance',$vehicule->DateDebutAssurance) }}" 
+                                    placeholder="DateDebutAssurance">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="CoutCarburant">Cout Carburant</label>
+                                     <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Dhs</div>
+                                          </div>
+                                        <input type="text" class="form-control" 
+                                        name="CoutCarburant" value="{{ old('CoutCarburant',$vehicule->CoutCarburant) }}" 
+                                        placeholder="CoutCarburant">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">.00</div>
+                                          </div>
+                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="CoutAssurance">Cout Assurance</label>
+                                     <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Dhs</div>
+                                          </div>
+                                        <input type="text" class="form-control" 
+                                        name="CoutAssurance" value="{{ old('CoutAssurance',$vehicule->CoutAssurance) }}" 
+                                        placeholder="CoutAssurance">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">.00</div>
+                                          </div>
+                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group ">
+                                    <label for="CoutReparation">Cout Reparation</label>
+                                       <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Dhs</div>
+                                          </div>
+                                        <input type="text" class="form-control" 
+                                        name="CoutReparation" value="{{ old('CoutReparation',$vehicule->CoutReparation) }}" 
+                                        placeholder="CoutReparation">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">.00</div>
+                                          </div>
+                                       </div>
+                                </div>
+                            </div>
 
                                <div class="col-md-4">
                                 <div class="form-group mb-3">
@@ -91,8 +144,8 @@
                                         <option value="" selected disabled>Choisir une parc</option>
                                          @foreach ($parcs as $parc)
                                            
-                                          <option class='font-weight-bold' value="{{ $parc->id }}">
-                                             {{ $parc->nom_parc }}
+                                          <option class='font-weight-bold' value="{{ $parc->id }}" selected>
+                                             {{ $parc->Nom_parc }}
                                          </option> 
                                              
                                          @endforeach
@@ -100,15 +153,14 @@
                                 </div>
                                </div>
 
-                               <div class="col-md-4 ">
-                                <div class="form-group mb-3 ">
-                                    <label for="date_assurance">Modifie</label>
+                               <div class="col-md-2 ">
+                                <div class="form-group mb-3 " style="margin-top:32px">
+                                    
                                     <button type="submit" class="btn btn-success form-control">
-                                        Submit
+                                        Modifier
                                    </button>
                                    
                                 </div>
-                            </div>
                             
                         </form>
                       </div>  

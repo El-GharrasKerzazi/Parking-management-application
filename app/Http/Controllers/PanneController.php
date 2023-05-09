@@ -48,15 +48,17 @@ class PanneController extends Controller
 
         //validation :
         $this->validate($request,[
-            "nom_panne" => "required",
-            "type_panne" => "required",
+            "Numero_panne" => "required",
+            "Date_panne" => "required",
+            "Type_panne" => "required",
             "vehicule_id" => "required|numeric"
         ]);
 
         //Store data :
         Panne::create([
-            "nom_panne" => $request->nom_panne,
-            "type_panne" => $request->type_panne,
+            "Numero_panne" => $request->Numero_panne,
+            "Date_panne" => $request->Date_panne,
+            "Type_panne" => $request->Type_panne,
             "vehicule_id" => $request->vehicule_id
            
 
@@ -64,7 +66,7 @@ class PanneController extends Controller
 
         //redirect route :
         return redirect()->route("pannes.index")->with([
-            "success" => "panne ajoute avec succés"
+            "success" => "Panne ajoute avec succés"
         ]);
     }
 
@@ -107,15 +109,17 @@ class PanneController extends Controller
 
          //validation :
          $this->validate($request,[
-            "nom_panne" => "required",
-            "type_panne" => "required",
+            "Numero_panne" => "required",
+            "Date_panne" => "required",
+            "Type_panne" => "required",
             "vehicule_id" => "required|numeric"
         ]);
 
         //Store data :
         $panne->update([
-            "nom_panne" => $request->nom_panne,
-            "type_panne" => $request->type_panne,
+            "Numero_panne" => $request->Numero_panne,
+            "Date_panne" => $request->Date_panne,
+            "Type_panne" => $request->Type_panne,
             "vehicule_id" => $request->vehicule_id
            
 
@@ -123,7 +127,7 @@ class PanneController extends Controller
 
         //redirect route :
         return redirect()->route("pannes.index")->with([
-            "success" => "panne modifies avec succés"
+            "success" => "Panne modifies avec succés"
         ]);
     }
 

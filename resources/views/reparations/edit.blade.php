@@ -1,15 +1,13 @@
 @extends('adminlte::page')
 
-@section('content_header')
-<a class="btn btn-outline-danger" href="{{ route('reparations.index') }}" role="button">Back</a>
-@endsection
+
 
 @section('content')
 <div class="container ">
 
     @include('layouts.alert')
     <div class="row ">
-        <div class="col-md-10 mx-auto">
+        <div class="col-md-10 mx-auto" style="margin-top: 80px">
            <div class="card my-5 shadow-lg p-3 mb-5 bg-body rounded">
               <div class="card-header mx-auto ">
                  <div class="btn btn-success font-weight-bold ">
@@ -25,19 +23,37 @@
                             @method('PUT')
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
-                                    <label for="numero_reparation">Numéro_Reparation</label>
+                                    <label for="Numero_reparation">Numéro Reparation</label>
                                     <input type="text" class="form-control" 
-                                    name="numero_reparation" value="{{ old('numero_reparation',$reparation->numero_reparation) }}" 
+                                    name="Numero_reparation" value="{{ old('Numero_reparation',$reparation->Numero_reparation) }}" 
                                     placeholder="Numéro_Reparation">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
-                                    <label for="date_reparation">Date_Reparation</label>
+                                    <label for="Date_reparation">Date Reparation</label>
                                     <input type="date" class="form-control" 
-                                    name="date_reparation" value="{{ old('date_reparation',$reparation->date_reparation) }}" 
+                                    name="Date_reparation" value="{{ old('Date_reparation',$reparation->Date_reparation) }}" 
                                     placeholder="Date_Reparation">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label for="Type_reparation">Type Reparation</label>
+                                    <input type="text" class="form-control" 
+                                    name="Type_reparation" value="{{ old('Type_reparation',$reparation->Type_reparation) }}" 
+                                    placeholder="Type_reparation">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label for="Prix_reparation">Prix reparation</label>
+                                    <input type="text" class="form-control" 
+                                    name="Prix_reparation" value="{{ old('Prix_reparation',$reparation->Prix_reparation) }}" 
+                                    placeholder="Prix_reparation">
                                 </div>
                             </div>
 
@@ -48,8 +64,8 @@
                                         <option value="" selected disabled>Choisir une matricule</option>
                                          @foreach ($vehicules as $vehicule)
                                            
-                                          <option class='font-weight-bold' value="{{ $vehicule->id }}">
-                                             {{ $vehicule->matricule }}
+                                          <option class='font-weight-bold' value="{{ $vehicule->id }}" selected>
+                                             {{ $vehicule->Matricule }}
                                          </option> 
                                              
                                          @endforeach
@@ -57,27 +73,12 @@
                                 </div>
                                </div>
 
-                               <div class="col-md-4">
-                                <div class="form-group mb-3">
-                                    <label for="fonctionnaire">Mécanicien</label>
-                                    <select name="fonctionnaire_id" id="fonctionnaire_id" class="form-control">
-                                        <option value="" selected disabled>Choisir une Mécanicien</option>
-                                         @foreach ($fonctionnaires as $fonctionnaire)
-
-                                          <option class='font-weight-bold' value="{{ $fonctionnaire->id }}">
-                                             {{ $fonctionnaire->cin }}
-                                         </option> 
-                                             
-                                         @endforeach
-                                    </select>
-                                </div>
-                               </div>
 
                                <div class="col-md-4 ">
                                 <div class="form-group mb-3 ">
-                                    <label for="date_assurance">Ajouté</label>
-                                    <button type="submit" class="btn btn-primary form-control">
-                                        Submit
+                                    
+                                    <button type="submit" class="btn btn-primary form-control" style="margin-top:32px">
+                                        Modifier
                                    </button>
                                    
                                 </div>

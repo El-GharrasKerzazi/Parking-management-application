@@ -11,21 +11,20 @@ class Fonctionnaire extends Model
 
     protected $fillable = [
          
-        'cin','nom','prenom','age','grade','parc_id'
+        'Cin','Nom','Prenom','Sexe','DateNaissance',
+        'LieuNaissance','Email',
+        'Tel','Adresse','Service',
 
        ];
 
-       public function parc(){
 
-          return $this->belongsTo(Parc::class);
+       public function mission(){
 
-       }
+        return $this->hasMany(Mission::class);
 
-       public function reparation(){
+      }
 
-        return $this->hasMany(Reparation::class);
-
-       } 
+      
 
        
 }

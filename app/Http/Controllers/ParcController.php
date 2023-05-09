@@ -45,22 +45,22 @@ class ParcController extends Controller
     {
         //validation :
         $this->validate($request,[
-            "numero_parc" => "required|numeric|unique:parcs,numero_parc",
-            "nom_parc" => "required|unique:parcs,nom_parc",
-            "emplacement" => "required"
+            "Numero_parc" => "required|numeric|unique:parcs,Numero_parc",
+            "Nom_parc" => "required|unique:parcs,Nom_parc"
+            
         ]);
 
         //Store data :
         Parc::create([
-            "numero_parc" => $request->numero_parc,
-            "nom_parc" => $request->nom_parc,
-            "emplacement" => $request->emplacement
+            "Numero_parc" => $request->Numero_parc,
+            "Nom_parc" => $request->Nom_parc
+           
 
         ]);
 
         //redirect route :
         return redirect()->route("parcs.index")->with([
-            "success" => "parc ajoute avec succés"
+            "success" => "Parc ajoute avec succés"
         ]);
     }    
 
@@ -70,15 +70,20 @@ class ParcController extends Controller
      * @param  \App\Models\Parc  $parc
      * @return \Illuminate\Http\Response
      */
-    public function show(Parc $parc)
-    {
-        // details data :
+    // public function show(Parc $parc)
+    // {
+    //     // details data :
         
-        return view('parcs.show')->with([
-            'parc' => $parc
-        ]);
+    //     return view('parcs.index')->with([
+    //         'parc' => $parc
+    //     ]);
+    // }
+    public function show($id)
+    {
+        $parc = Parc::find($id);
+   
+        return response()->json($parc);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -108,22 +113,21 @@ class ParcController extends Controller
 
          //validation :
          $this->validate($request,[
-            "numero_parc" => "required|numeric",
-            "nom_parc" => "required",
-            "emplacement" => "required"
+            "Numero_parc" => "required|numeric",
+            "Nom_parc" => "required"
         ]);
 
         //Update data :
         $parc->update([
-            "numero_parc" => $request->numero_parc,
-            "nom_parc" => $request->nom_parc,
-            "emplacement" => $request->emplacement
+            "Numero_parc" => $request->Numero_parc,
+            "Nom_parc" => $request->Nom_parc
+            
 
         ]);
 
         //redirect route :
         return redirect()->route("parcs.index")->with([
-            "success" => "parc modifie avec succés"
+            "success" => "Parc modifie avec succés"
         ]);
     }
 

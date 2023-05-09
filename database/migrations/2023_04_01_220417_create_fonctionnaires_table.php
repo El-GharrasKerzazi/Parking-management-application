@@ -15,13 +15,16 @@ class CreateFonctionnairesTable extends Migration
     {
         Schema::create('fonctionnaires', function (Blueprint $table) {
             $table->id()->primarykey();
-            $table->string('cin');
-            $table->string('nom');
-            $table->string('prenom');
-            $table->integer('age');
-            $table->string('grade');
-            $table->unsignedBigInteger('parc_id');
-            $table->foreign('parc_id')->references('id')->on('parcs')->onDelete("cascade");
+            $table->string('Cin');
+            $table->string('Nom');
+            $table->string('Prenom');
+            $table->string('Sexe');
+            $table->date('DateNaissance');
+            $table->string('LieuNaissance');
+            $table->string('Email');
+            $table->integer('Tel');
+            $table->string('Adresse');
+            $table->string('Service');
             $table->timestamps();
         });
     }

@@ -11,16 +11,11 @@ class Reparation extends Model
 
     protected $fillable = [
          
-        'numero_reparation','date_reparation','fonctionnaire_id','vehicule_id'
+        'Numero_reparation','Date_reparation','Type_reparation','Prix_reparation','vehicule_id'
 
        ];
 
-       public function fonctionnaire(){
-         
-        return $this->belongsTo(Fonctionnaire::class);
-
-       }
-       
+   
        public function vehicule(){
 
         return $this->belongsTo(Vehicule::class);

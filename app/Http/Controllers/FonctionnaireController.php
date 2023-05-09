@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Parc;
+
 use Illuminate\Http\Request;
 use App\Models\Fonctionnaire;
 
@@ -29,9 +29,7 @@ class FonctionnaireController extends Controller
     {
         //redirect view create with data table parc :
 
-        return view("fonctionnaires.create")->with([
-            "parcs" => Parc::all()
-        ]);
+        return view("fonctionnaires.create");
     }
 
     /**
@@ -46,28 +44,36 @@ class FonctionnaireController extends Controller
 
          //validation :
          $this->validate($request,[
-            "cin" => "required|unique:fonctionnaires,cin",
-            "nom" => "required",
-            "prenom" => "required",
-            "age" => "required|numeric",
-            "grade" => "required",
-            "parc_id" => "required|numeric"
+            "Cin" => "required|unique:fonctionnaires,Cin",
+            "Nom" => "required",
+            "Prenom" => "required",
+            "Sexe" => "required",
+            "DateNaissance" => "required",
+            "LieuNaissance" => "required",
+            "Email" => "required",
+            "Tel" => "required",
+            "Adresse" => "required",
+            "Service" => "required",
         ]);
 
         //Store data :
         Fonctionnaire::create([
-            "cin" => $request->cin,
-            "nom" => $request->nom,
-            "prenom" => $request->prenom,
-            "age" => $request->age,
-            "grade" => $request->grade,
-            "parc_id" => $request->parc_id
+            "Cin" => $request->Cin,
+            "Nom" => $request->Nom,
+            "Prenom" => $request->Prenom,
+            "Sexe" => $request->Sexe,
+            "DateNaissance" => $request->DateNaissance,
+            "LieuNaissance" => $request->LieuNaissance,
+            "Email" => $request->Email,
+            "Tel" => $request->Tel,
+            "Adresse" => $request->Adresse,
+            "Service" => $request->Service,
 
         ]);
 
         //redirect route :
         return redirect()->route("fonctionnaires.index")->with([
-            "success" => "fonctionnaire ajoute avec succés"
+            "success" => "Fonctionnaire ajoute avec succés"
         ]);
     }
 
@@ -92,7 +98,6 @@ class FonctionnaireController extends Controller
     {
         //
         return view("fonctionnaires.edit")->with([
-            "parcs" => Parc::all(),
             "fonctionnaire" => $fonctionnaire
         ]);
     }
@@ -110,28 +115,36 @@ class FonctionnaireController extends Controller
 
         //validation :
         $this->validate($request,[
-            "cin" => "required|unique:fonctionnaires,cin,".$fonctionnaire->id,
-            "nom" => "required",
-            "prenom" => "required",
-            "age" => "required|numeric",
-            "grade" => "required",
-            "parc_id" => "required|numeric"
+            "Cin" => "required",
+            "Nom" => "required",
+            "Prenom" => "required",
+            "Sexe" => "required",
+            "DateNaissance" => "required",
+            "LieuNaissance" => "required",
+            "Email" => "required",
+            "Tel" => "required",
+            "Adresse" => "required",
+            "Service" => "required",
         ]);
 
         //Store data :
         $fonctionnaire->update([
-            "cin" => $request->cin,
-            "nom" => $request->nom,
-            "prenom" => $request->prenom,
-            "age" => $request->age,
-            "grade" => $request->grade,
-            "parc_id" => $request->parc_id
+            "Cin" => $request->Cin,
+            "Nom" => $request->Nom,
+            "Prenom" => $request->Prenom,
+            "Sexe" => $request->Sexe,
+            "DateNaissance" => $request->DateNaissance,
+            "LieuNaissance" => $request->LieuNaissance,
+            "Email" => $request->Email,
+            "Tel" => $request->Tel,
+            "Adresse" => $request->Adresse,
+            "Service" => $request->Service,
 
         ]);
 
         //redirect route :
         return redirect()->route("fonctionnaires.index")->with([
-            "success" => "fonctionnaire modifie avec succés"
+            "success" => "Fonctionnaire modifie avec succés"
         ]);
     }
     
