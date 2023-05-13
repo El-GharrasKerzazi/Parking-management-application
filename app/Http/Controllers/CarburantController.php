@@ -75,9 +75,11 @@ class CarburantController extends Controller
      * @param  \App\Models\Carburant  $carburant
      * @return \Illuminate\Http\Response
      */
-    public function show(Carburant $carburant)
+    public function show($id)
     {
-        //
+        $carburant = Carburant::find($id);
+        return response()->json($carburant);
+
     }
 
     /**

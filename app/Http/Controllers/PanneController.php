@@ -76,9 +76,11 @@ class PanneController extends Controller
      * @param  \App\Models\Panne  $panne
      * @return \Illuminate\Http\Response
      */
-    public function show(Panne $panne)
+    public function show($id)
     {
-        //
+        $panne = Panne::find($id);
+   
+        return response()->json($panne);
     }
 
     /**

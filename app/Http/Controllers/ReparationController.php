@@ -73,9 +73,11 @@ class ReparationController extends Controller
      * @param  \App\Models\Reparation  $reparation
      * @return \Illuminate\Http\Response
      */
-    public function show(Reparation $reparation)
+    public function show($id)
     {
-        //
+        $reparation = Reparation::find($id);
+   
+        return response()->json($reparation);
     }
 
     /**

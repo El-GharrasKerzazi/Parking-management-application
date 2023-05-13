@@ -87,11 +87,13 @@ class VehiculeController extends Controller
      * @param  \App\Models\Vehicule  $vehicule
      * @return \Illuminate\Http\Response
      */
-    public function show(Vehicule $vehicule)
+   
+
+    public function show($id)
     {
-        
-        $vehicules =Vehicule::all();
-        return view('home',compact('vehicules'));
+        $vehicule = Vehicule::find($id);
+   
+        return response()->json($vehicule);
     }
 
     /**
@@ -123,7 +125,7 @@ class VehiculeController extends Controller
 
           //validation :
           $this->validate($request,[
-            "Matricule" => "required|unique:vehicules,Matricule".$vehicule->id,
+            "Matricule" => "required",
             "Type" => "required",
             "Marque" => "required",
             "Kilometrage" => "required",
@@ -172,4 +174,15 @@ class VehiculeController extends Controller
         //redirect route :
         return redirect()->route("vehicules.index");
     }
+
+
+   //redirect in page home for show ditails the vehicule
+
+     public function push(Vehicule $vehicule)
+    {
+        
+        $vehicules =Vehicule::all();
+        return view('home',compact('vehicules'));
+    }
 }
+

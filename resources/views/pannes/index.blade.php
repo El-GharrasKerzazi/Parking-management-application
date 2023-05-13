@@ -35,7 +35,7 @@
                  <div class="icon">
                      <i class="fas fa-wrench"></i>
                  </div>
-                 <a href="{{ url('admin/reaparations') }}" class="small-box-footer">
+                 <a href="{{ url('admin/reparations') }}" class="small-box-footer">
                  more info <i class="fas fa-arrow-circle-right"></i>
                  </a>
                 </div>
@@ -76,9 +76,9 @@
                             <thead style="background-color: rgb(74, 74, 117); color:aliceblue">
                                <tr>
                                    <th>ID</th>
-                                   <th>NumeroPanne</th>
-                                   <th>DatePanne</th>
-                                   <th>TypePanne</th>
+                                   <th>Numero Panne</th>
+                                   <th>Date Panne</th>
+                                   <th>Type Panne</th>
                                    <th>Matricule</th>
                                    <th>Action</th>
                                    
@@ -96,10 +96,12 @@
                                    <td>{{ $panne->vehicule->Matricule }}</td>
                                    <td class="d-flex justify-content-center align-items-center">
                                       
-                                       <a href="{{ route('pannes.show' , $panne->id) }}" 
-                                          class="btn btn-sm btn-primary">
-                                          <i class="fas fa-eye"></i>
-                                       </a>
+                                    <a href="javascript:void(0)"
+                                    id="show-user"
+                                    data-url="{{ route('pannes.show', $panne->id) }}"
+                                    class="btn btn-sm btn-primary">
+                                    <i class="fas fa-eye"></i>
+                                     </a>
                                        
                                        <a href="{{ route('pannes.edit' , $panne->id) }}" 
                                           class="btn btn-sm btn-success mx-2">
@@ -128,6 +130,35 @@
            </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="userShowModal" tabindex="-1" role="dialog" aria-labelledby="userShowModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="userShowModal" style="font-weight: bold">Détails de panne</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card  mb-3" style="max-width: 30rem; background-color:rgb(136, 199, 55)">
+                    <div class="card-header">Panne</div>
+                    <div class="card-body">
+                      {{-- <h5 class="card-title">détails de carburant</h5><br> --}}
+                      <p><strong>Nemuro Panne:</strong> <span id="Numero_panne"></span></p>
+                      <p><strong>Date Panne:</strong> <span id="Date_panne"></span></p>
+                      <p><strong>Type Panne:</strong> <span id="Type_panne"></span></p>
+                      <p><strong>ID_vehicule:</strong> <span id="vehicule_id"></span></p>
+                    </div>
+                  </div>
+                 </div>
+        </div>
+                <!-- Add more user data here -->
+            </div>
+        </div>
+
 @endsection
 
 @section('js')
@@ -180,6 +211,28 @@
            })
         }
     </script>
+
+
+
+<script>
+       
+    $(document).ready(function () {
+        
+        $('body').on('click', '#show-user', function () {
+          var userURL = $(this).data('url');
+          $.get(userURL, function (data) {
+              $('#userShowModal').modal('show');
+              $('#Numero_panne').text(data.Numero_panne);
+              $('#Date_panne').text(data.Date_panne);
+              $('#Type_panne').text(data.Type_panne);
+              $('#vehicule_id').text(data.vehicule_id);
+              
+          })
+       });
+        
+    });
+   
+</script>
     
 
 @endsection

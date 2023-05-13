@@ -35,7 +35,7 @@
                  <div class="icon">
                      <i class="fas fa-wrench"></i>
                  </div>
-                 <a href="{{ url('admin/reaparations') }}" class="small-box-footer">
+                 <a href="{{ url('admin/reparations') }}" class="small-box-footer">
                  more info <i class="fas fa-arrow-circle-right"></i>
                  </a>
                 </div>
@@ -79,14 +79,16 @@
                                    <td>{{ $reparation->Numero_reparation }}</td>
                                    <td>{{ $reparation->Date_reparation }}</td>
                                    <td>{{ $reparation->Type_reparation }}</td>
-                                   <td>{{ $reparation->Prix_reparation }}</td>
+                                   <td>{{ $reparation->Prix_reparation }} <strong>Dhs</strong></td>
                                    <td>{{ $reparation->vehicule->Matricule }}</td>
                                    <td class="d-flex justify-content-center align-items-center">
                                       
-                                       <a href="{{ route('reparations.show' , $reparation->id) }}" 
-                                          class="btn btn-sm btn-primary">
-                                          <i class="fas fa-eye"></i>
-                                       </a>
+                                    <a href="javascript:void(0)"
+                                    id="show-user"
+                                    data-url="{{ route('reparations.show', $reparation->id) }}"
+                                    class="btn btn-sm btn-primary">
+                                    <i class="fas fa-eye"></i>
+                                    </a>
                                        
                                        <a href="{{ route('reparations.edit' , $reparation->id) }}" 
                                           class="btn btn-sm btn-warning mx-2">
@@ -115,6 +117,36 @@
          </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="userShowModal" tabindex="-1" role="dialog" aria-labelledby="userShowModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="userShowModal" style="font-weight: bold">Détails de reparation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card  mb-3" style="max-width: 30rem; background-color:rgb(52, 201, 221)">
+                    <div class="card-header">Reparation</div>
+                    <div class="card-body">
+                      {{-- <h5 class="card-title">détails de carburant</h5><br> --}}
+                      <p><strong>Némuro reparation:</strong> <span id="Numero_reparation"></span></p>
+                      <p><strong>Date reparation:</strong> <span id="Date_reparation"></span></p>
+                      <p><strong>Type reparation:</strong> <span id="Type_reparation"></span></p>
+                      <p><strong>Prix reparation:</strong> <span id="Prix_reparation"></span> <strong>Dhs</strong></p>
+                      <p><strong>ID_vehicule:</strong> <span id="vehicule_id"></span></p>
+                    </div>
+                  </div>
+                 </div>
+        </div>
+                <!-- Add more user data here -->
+            </div>
+        </div>
+
 @endsection
 
 @section('js')
@@ -167,6 +199,28 @@
            })
         }
     </script>
+
+
+<script>
+       
+    $(document).ready(function () {
+        
+        $('body').on('click', '#show-user', function () {
+          var userURL = $(this).data('url');
+          $.get(userURL, function (data) {
+              $('#userShowModal').modal('show');
+              $('#Numero_reparation').text(data.Numero_reparation);
+              $('#Date_reparation').text(data.Date_reparation);
+              $('#Type_reparation').text(data.Type_reparation);
+              $('#Prix_reparation').text(data.Prix_reparation);
+              $('#vehicule_id').text(data.vehicule_id);
+              
+          })
+       });
+        
+    });
+   
+</script>
     
 
 @endsection

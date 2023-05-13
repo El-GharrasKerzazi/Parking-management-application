@@ -104,10 +104,12 @@
                                    <td>{{ $mission->DateRetour }}</td>
                                    <td class="d-flex justify-content-center align-items-center">
                                       
-                                       <a href="{{ route('missions.show' , $mission->id) }}" 
-                                          class="btn btn-sm btn-primary">
-                                          <i class="fas fa-eye"></i>
-                                       </a>
+                                    <a href="javascript:void(0)"
+                                    id="show-user"
+                                    data-url="{{ route('missions.show', $mission->id) }}"
+                                    class="btn btn-sm btn-primary">
+                                    <i class="fas fa-eye"></i>
+                                    </a>
                                        
                                        <a href="{{ route('missions.edit' , $mission->id) }}" 
                                           class="btn btn-sm btn-success mx-2">
@@ -136,6 +138,42 @@
            </div>
     </div>
 </div>
+
+
+
+{{-- ******************************************* --}}
+
+<!-- Modal -->
+<div class="modal fade" id="userShowModal" tabindex="-1" role="dialog" aria-labelledby="userShowModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="userShowModal" style="font-weight: bold">Détails de mission</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card mb-3" style="max-width: 30rem; background-color:rgb(207, 65, 200)">
+                    <div class="card-header text-bold">Mission</div>
+                    <div class="card-body">
+                      {{-- <h5 class="card-title">détails de carburant</h5><br> --}}
+                      <p><strong>CodeMission:</strong> <span id="CodeMission"></span></p>
+                      <p><strong>Ville:</strong> <span id="Ville"></span></p>
+                      <p><strong>Lieu:</strong> <span id="Lieu"></span></p>
+                      <p><strong>Object:</strong> <span id="Object"></span></p>
+                      <p><strong>Date Depart:</strong> <span id="DateDepart"></span></p>
+                      <p><strong>Lieu Retour:</strong> <span id="DateRetour"></span></p>
+                      <p><strong>ID_fonctionnaire:</strong> <span id="fonctionnaire_id"></span></p>
+                      <p><strong>ID_vehicule:</strong> <span id="vehicule_id"></span></p>
+                      
+                    </div>
+                  </div>
+                 </div>
+        </div>
+                <!-- Add more user data here -->
+            </div>
+        </div>
 @endsection
 
 @section('js')
@@ -189,5 +227,30 @@
         }
     </script>
     
+
+    <script>
+       
+        $(document).ready(function () {
+            
+            $('body').on('click', '#show-user', function () {
+              var userURL = $(this).data('url');
+              $.get(userURL, function (data) {
+                  $('#userShowModal').modal('show');
+                  $('#CodeMission').text(data.CodeMission);
+                  $('#Ville').text(data.Ville);
+                  $('#Lieu').text(data.Lieu);
+                  $('#Object').text(data.Object);
+                  $('#DateDepart').text(data.DateDepart);
+                  $('#DtaeRetour').text(data.DateRetour);
+                  $('#fonctionnaire_id').text(data.fonctionnaire_id);
+                  $('#vehicule_id').text(data.vehicule_id);
+                  $('#Service').text(data.Service);
+                  
+              })
+           });
+            
+        });
+       
+    </script>
 
 @endsection

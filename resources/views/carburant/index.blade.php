@@ -34,7 +34,7 @@
              <div class="icon">
                  <i class="fas fa-battery-half"></i>
              </div>
-             <a href="{{ url('admin/carburant') }}" class="small-box-footer">
+             <a href="{{ url('admin/carburants') }}" class="small-box-footer">
              more info <i class="fas fa-arrow-circle-right"></i>
              </a>
             </div>
@@ -63,8 +63,8 @@
                                    <th>Numéro Carburant</th>
                                    <th>Date Carburant</th>
                                    <th>Kilometrage</th>
-                                   <th>Quantite</th>
-                                   <th>Prix</th>
+                                   <th>Quantite/L</th>
+                                   <th>Prix/L</th>
                                    <th>Matricule</th>
                                    <th>Action</th>
                                    
@@ -78,16 +78,18 @@
                                    <td>{{ $key+=1 }}</td>
                                    <td>{{ $carburant->NemuroCarburant }}</td>
                                    <td>{{ $carburant->DateCarburant }}</td>
-                                   <td>{{ $carburant->Kilometrage }}</td>
-                                   <td>{{ $carburant->Quantite }}</td>
-                                   <td>{{ $carburant->Prix }}</td>
+                                   <td>{{ $carburant->Kilometrage }} <strong>Km</strong></td>
+                                   <td>{{ $carburant->Quantite }} <strong>L</strong></td>
+                                   <td>{{ $carburant->Prix }} <strong>Dhs</strong> </td>
                                    <td>{{ $carburant->vehicule->Matricule }}</td>
                                    <td class="d-flex justify-content-center align-items-center">
                                       
-                                       <a href="{{ route('carburants.show' , $carburant->id) }}" 
-                                          class="btn btn-sm btn-primary">
-                                          <i class="fas fa-eye"></i>
-                                       </a>
+                                    <a href="javascript:void(0)"
+                                    id="show-user"
+                                    data-url="{{ route('carburants.show', $carburant->id) }}"
+                                    class="btn btn-sm btn-primary">
+                                    <i class="fas fa-eye"></i>
+                                    </a>
                                        
                                        <a href="{{ route('carburants.edit' , $carburant->id) }}" 
                                           class="btn btn-sm btn-warning mx-2">
@@ -116,6 +118,41 @@
            </div>
     </div>
 </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="userShowModal" tabindex="-1" role="dialog" aria-labelledby="userShowModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="userShowModal" style="font-weight: bold">Détails de carburant</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card bg-warning mb-3" style="max-width: 30rem;">
+                    <div class="card-header">Carburant</div>
+                    <div class="card-body">
+                      {{-- <h5 class="card-title">détails de carburant</h5><br> --}}
+                      <p><strong>Nemuro Carburant:</strong> <span id="NemuroCarburant"></span></p>
+                      <p><strong>Date Carburant:</strong> <span id="DateCarburant"></span></p>
+                      <p><strong>Kilometrage:</strong> <span id="Kilometrage"></span></p>
+                      <p><strong>Quantite/L:</strong> <span id="Quantite"></span></p>
+                      <p><strong>Prix/L:</strong> <span id="Prix"></span>  Dhs</p>
+                      <p><strong>ID_vehicule:</strong> <span id="vehicule_id"></span></p>
+                    </div>
+                  </div>
+                 </div>
+        </div>
+                <!-- Add more user data here -->
+            </div>
+        </div>
+
+
+
+
 @endsection
 
 @section('js')
@@ -168,6 +205,29 @@
            })
         }
     </script>
+
+
+<script>
+       
+    $(document).ready(function () {
+        
+        $('body').on('click', '#show-user', function () {
+          var userURL = $(this).data('url');
+          $.get(userURL, function (data) {
+              $('#userShowModal').modal('show');
+              $('#NemuroCarburant').text(data.NemuroCarburant);
+              $('#DateCarburant').text(data.DateCarburant);
+              $('#Kilometrage').text(data.Kilometrage);
+              $('#Quantite').text(data.Quantite);
+              $('#Prix').text(data.Prix);
+              $('#vehicule_id').text(data.vehicule_id);
+              
+          })
+       });
+        
+    });
+   
+</script>
     
 
 @endsection

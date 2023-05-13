@@ -80,11 +80,12 @@ class MissionController extends Controller
      * @param  \App\Models\Mission  $mission
      * @return \Illuminate\Http\Response
      */
-    public function show(Mission $mission)
+    public function show($id)
     {
-        //
+        $mission = Mission::find($id);
+   
+        return response()->json($mission);
     }
-
     /**
      * Show the form for editing the specified resource.
      *

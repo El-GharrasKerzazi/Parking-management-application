@@ -88,10 +88,12 @@
                                    <td>{{ $fonctionnaire->Service }}</td>
                                    <td class="d-flex justify-content-center align-items-center">
                                       
-                                       <a href="{{ route('fonctionnaires.show' , $fonctionnaire->id) }}" 
-                                          class="btn btn-sm btn-primary">
-                                          <i class="fas fa-eye"></i>
-                                       </a>
+                                    <a href="javascript:void(0)"
+                                    id="show-user"
+                                    data-url="{{ route('fonctionnaires.show', $fonctionnaire->id) }}"
+                                    class="btn btn-sm btn-primary">
+                                    <i class="fas fa-eye"></i>
+                                    </a>
                                        
                                        <a href="{{ route('fonctionnaires.edit' , $fonctionnaire->id) }}" 
                                           class="btn btn-sm btn-success mx-2">
@@ -120,6 +122,40 @@
          </div>
     </div>
 </div>
+
+{{-- ******************************************* --}}
+
+<!-- Modal -->
+<div class="modal fade" id="userShowModal" tabindex="-1" role="dialog" aria-labelledby="userShowModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="userShowModal" style="font-weight: bold">Détails de fonctionnaire</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card bg-primary mb-3" style="max-width: 30rem;">
+                    <div class="card-header">Fonctionnaire</div>
+                    <div class="card-body">
+                      {{-- <h5 class="card-title">détails de carburant</h5><br> --}}
+                      <p><strong>Cin:</strong> <span id="Cin"></span></p>
+                      <p><strong>Nom:</strong> <span id="Nom"></span></p>
+                      <p><strong>Prenom:</strong> <span id="Prenom"></span></p>
+                      <p><strong>Sexe:</strong> <span id="Sexe"></span></p>
+                      <p><strong>Date Naissance:</strong> <span id="DateNaissance"></span></p>
+                      <p><strong>Lieu Naissance:</strong> <span id="LieuNaissance"></span></p>
+                      <p><strong>Email:</strong> <span id="Email"></span></p>
+                      <p><strong>Telephone:</strong> <span id="Tel"></span></p>
+                      <p><strong>Service:</strong> <span id="Service"></span></p>
+                    </div>
+                  </div>
+                 </div>
+        </div>
+                <!-- Add more user data here -->
+            </div>
+        </div>
 @endsection
 
 @section('js')
@@ -172,6 +208,31 @@
            })
         }
     </script>
+
+<script>
+       
+    $(document).ready(function () {
+        
+        $('body').on('click', '#show-user', function () {
+          var userURL = $(this).data('url');
+          $.get(userURL, function (data) {
+              $('#userShowModal').modal('show');
+              $('#Cin').text(data.Cin);
+              $('#Nom').text(data.Nom);
+              $('#Prenom').text(data.Prenom);
+              $('#Sexe').text(data.Sexe);
+              $('#DateNaissance').text(data.DateNaissance);
+              $('#LieuNaissance').text(data.LieuNaissance);
+              $('#Email').text(data.Email);
+              $('#Tel').text(data.Tel);
+              $('#Service').text(data.Service);
+              
+          })
+       });
+        
+    });
+   
+</script>
     
 
 @endsection

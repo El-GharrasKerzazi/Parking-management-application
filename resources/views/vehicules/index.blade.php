@@ -95,16 +95,18 @@
                                    <td>{{ $vehicule->Matricule }}</td>
                                    <td>{{ $vehicule->Type }}</td>
                                    <td>{{ $vehicule->Marque }}</td>
-                                   <td>{{ $vehicule->Kilometrage }}</td>
+                                   <td>{{ $vehicule->Kilometrage }} <strong>Km</strong></td>
                                    <td>{{ $vehicule->TypeCarb}}</td>
-                                   <td>{{ $vehicule->CoutAssurance}}</td>
+                                   <td>{{ $vehicule->CoutAssurance}} <strong>Dhs</strong></td>
                                    <td>{{ $vehicule->parc->Nom_parc }}</td>
                                    <td class="d-flex justify-content-center align-items-center">
                                       
-                                       <a href="{{ route('vehicules.show' , $vehicule->id) }}" 
-                                          class="btn btn-sm btn-primary">
-                                          <i class="fas fa-eye"></i>
-                                       </a>
+                                    <a href="javascript:void(0)"
+                                    id="show-user"
+                                    data-url="{{ route('vehicules.show', $vehicule->id) }}"
+                                    class="btn btn-sm btn-success">
+                                    <i class="fas fa-eye"></i>
+                                    </a>
                                        
                                        <a href="{{ route('vehicules.edit' , $vehicule->id) }}" 
                                           class="btn btn-sm btn-warning mx-2">
@@ -133,6 +135,39 @@
            </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="userShowModal" tabindex="-1" role="dialog" aria-labelledby="userShowModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="userShowModal" style="font-weight: bold">Détails de vehicule</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card mb-3" style="max-width: 30rem; background-color:rgb(231, 112, 14)">
+                    <div class="card-header">Vehicule</div>
+                    <div class="card-body">
+                      {{-- <h5 class="card-title">détails de carburant</h5><br> --}}
+                      <p><strong>Matricule:</strong> <span id="Matricule"></span></p>
+                      <p><strong>Type:</strong> <span id="Type"></span></p>
+                      <p><strong>Marque:</strong> <span id="Marque"></span></p>
+                      <p><strong>Kilometrage:</strong> <span id="Kilometrage"></span> <strong>Km</strong></p>
+                      <p><strong>Type Carburant:</strong> <span id="TypeCarb"></span></p>
+                      <p><strong>Cout Assurance:</strong> <span id="CoutAssurance"></span> <strong>Dhs</strong></p>
+                      <p><strong>Cout Carburant:</strong> <span id="CoutCarburant"></span> <strong>Dhs</strong></p>
+                      <p><strong>Cout Reparation:</strong> <span id="CoutReparation"></span> <strong>Dhs</strong></p>
+                      <p><strong>ID_parking:</strong> <span id="parc_id"></span></p>
+                    </div>
+                  </div>
+                 </div>
+        </div>
+                <!-- Add more user data here -->
+            </div>
+        </div>
 @endsection
 
 @section('js')
@@ -185,6 +220,33 @@
            })
         }
     </script>
+
+
+
+<script>
+       
+    $(document).ready(function () {
+        
+        $('body').on('click', '#show-user', function () {
+          var userURL = $(this).data('url');
+          $.get(userURL, function (data) {
+              $('#userShowModal').modal('show');
+              $('#Matricule').text(data.Matricule);
+              $('#Type').text(data.Type);
+              $('#Marque').text(data.Marque);
+              $('#Kilometrage').text(data.Kilometrage);
+              $('#TypeCarb').text(data.TypeCarb);
+              $('#CoutAssurance').text(data.CoutAssurance);
+              $('#CoutCarburant').text(data.CoutCarburant);
+              $('#CoutReparation').text(data.CoutReparation);
+              $('#parc_id').text(data.parc_id);
+              
+          })
+       });
+        
+    });
+   
+</script>
     
 
 @endsection

@@ -83,9 +83,11 @@ class FonctionnaireController extends Controller
      * @param  \App\Models\Fonctionnaire  $fonctionnaire
      * @return \Illuminate\Http\Response
      */
-    public function show(Fonctionnaire $fonctionnaire)
+    public function show($id)
     {
-        //
+        $fonctionnnaire = Fonctionnaire::find($id);
+   
+        return response()->json($fonctionnnaire);
     }
 
     /**

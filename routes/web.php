@@ -24,10 +24,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home',"App\Http\Controllers\VehiculeController@show");
+Route::get('/home',"App\Http\Controllers\VehiculeController@push");
 
 Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::get('/home',"App\Http\Controllers\VehiculeController@show");
+    Route::get('/home',"App\Http\Controllers\VehiculeController@push");
 
     Route::resource('/parcs', ParcController::class);
     Route::resource('/fonctionnaires', FonctionnaireController::class);
