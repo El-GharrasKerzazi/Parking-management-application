@@ -93,7 +93,7 @@ body {
                                         <strong>{{ $message }}</strong>
                                   
                                    </span>
-                                  @enderror
+                                    @enderror
                                 
                            
     
