@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+{{-- @extends('adminlte::page')
 
 
 
@@ -57,4 +57,4 @@
     
       </div>
 @endsection
-
+ --}}

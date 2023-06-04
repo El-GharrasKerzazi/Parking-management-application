@@ -39,17 +39,23 @@
                  </a>
                 </div>
             </div>
-          {{-- <div class="row my-5">
-               <div class="col-md-6 mx-auto">
-                @include('layouts.alert')
-               </div>
-          </div> --}}
+          
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="text-center font-weight-bold ">
          
                            <h4 class="btn btn-info">Parking</h4>
+                              <!-- Button trigger modal -->
+                              <button type="button" class="btn btn-primary d-flex" data-toggle="modal" data-target="#exampleModal">
+                                Create
+                              </button>
+
+                              <div class="row">
+                                <div class="col-md-8 mx-auto">
+                                 @include('layouts.alert')
+                                </div>
+                           </div>
          
          
                          </div>
@@ -82,6 +88,8 @@
                                               class="btn btn-sm btn-success">
                                               <i class="fas fa-eye"></i>
                                            </a>
+
+                                        
                                            
                                            <a href="{{ route('parcs.edit' , $parc->id) }}" 
                                               class="btn btn-sm btn-warning mx-2">
@@ -159,6 +167,74 @@
         </div>
     </div>
 </div>
+
+
+
+{{-- modale create --}}
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           
+            <div class="card my-5 shadow-lg p-3 mb-5 bg-body rounded">
+                <div class="card-header mx-auto">
+                   <div class="btn btn-success text-center font-weight-bold">
+        
+                      <h4>Creation new parking</h4>
+                  </div>
+                </div>
+                        <div class="card-body">
+                          <form action="{{ route('parcs.store') }}"  method="POST" class="mt-3">
+                              @csrf
+                              
+                              
+                                <div class="form-group mb-3">
+                                    <label for="Numero_parc">Numéro parking</label>
+                                    <input type="text" class="form-control" 
+                                    name="Numero_parc" value="{{ old('Numero_parc') }}" 
+                                    placeholder="Numéro_Parking">
+                                </div>
+                              
+        
+                              
+                                <div class="form-group mb-3">
+                                    <label for="Nom_parc">Nom parking</label>
+                                    <input type="text" class="form-control" 
+                                    name="Nom_parc" value="{{ old('Nom_parc') }}" 
+                                    placeholder="Nom_Parking">
+                                </div>
+                               
+                                
+            <button type="submit" class="btn btn-primary">
+                Enregistré
+              </button>
+        
+                             
+                          </form>
+                        </div>
+        
+                    </div>
+                  </div>
+     
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+          
+
+        
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 @endsection
 
 @section('js')

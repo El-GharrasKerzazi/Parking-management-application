@@ -32,7 +32,7 @@ class ParcController extends Controller
     public function create()
     {
         //
-        return view("parcs.create");
+        // return view("parcs.create");
     }
 
     /**
@@ -51,13 +51,13 @@ class ParcController extends Controller
         ]);
 
         //Store data :
-        Parc::create([
+        $parc = Parc::create([
             "Numero_parc" => $request->Numero_parc,
             "Nom_parc" => $request->Nom_parc
            
 
         ]);
-
+        $parc->save();
         //redirect route :
         return redirect()->route("parcs.index")->with([
             "success" => "Parc ajoute avec succés"
